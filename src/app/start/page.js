@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 const Home = () => {
     const [isUpload, setIsUpload] = useState(false)
     const [imgFile, setImgFile] = useState('')
-    const [files, setFiles] = useState()
     const [select, setSelect] = useState()
     const [result, setResult] = useState('')
     const [isLoad, setIsLoad] = useState(true)
@@ -40,22 +39,6 @@ const Home = () => {
         }, 1000)
     }, [cookies])
 
-    // select image from computer 
-    const changeFile = event => {
-        const file = event.target.files[0]
-        setFiles(file)
-    }
-
-    // upload Image file 
-    const uploadFile = () => {
-        const reader = new FileReader();
-        reader.readAsDataURL(files);
-        reader.onload = function () {
-            const base64String = reader.result;
-            setImgFile(base64String);
-        };
-    }
-
     // select Template 
     const handleStart = () => {
         if (imgFile) {
@@ -78,7 +61,7 @@ const Home = () => {
         try {
             // console.log(imgFile)
             // axios.post('https://1a53-103-17-110-126.ngrok-free.app/rec', {
-            axios.post('https://b723-103-17-110-127.ngrok-free.app/rec', {
+            axios.post('https://911c-103-17-110-127.ngrok-free.app/rec', {
                 image: imgFile.split(',')[1],
                 choice: select
             }).then(res => {
